@@ -1,0 +1,31 @@
+.heading {
+  text-align: center;
+}
+.input-text {
+  width: 500px;
+  text-align: left;
+  padding: 5px;
+  font-size: 15px;
+  border-radius: 10px;
+}
+.input-div {
+  text-align: center;
+  margin-bottom: 5px;
+}
+.fetch-div {
+  width: 500px;
+
+  text-align: left;
+  margin: 0 auto;
+  border: 2px solid black;
+  max-height: 600px;
+  overflow-y: scroll;
+  border-radius: 5px;
+}
+.fetch-div p {
+  margin: 10px;
+  cursor: pointer;
+}
+.fetch-div p:hover {
+  background-color: lightblue;
+}
