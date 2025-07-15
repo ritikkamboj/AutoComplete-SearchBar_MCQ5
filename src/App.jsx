@@ -16,7 +16,9 @@ function App() {
   }
 
   useEffect(() => {
-    fetchData();
+   let timer =  setTimeout( () => fetchData()  , 300);
+
+   return () => clearInterval(timer)
 
 
   }, [input])
