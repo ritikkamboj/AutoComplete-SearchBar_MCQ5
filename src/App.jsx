@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 function App() {
@@ -7,14 +7,15 @@ function App() {
   const [input, setInput] = useState('');
   const [showresults, setShowresults] = useState(false);
   const [cacheData, setCacheData] = useState({})
+  // const inputRef = useRef();
+
 
   async function fetchData() {
 
-    if(cacheData[input])
-    {
+    if (cacheData[input]) {
       console.log("data from cached")
       setData(cacheData[input])
-      return ;
+      return;
     }
     const res = await fetch(`https://dummyjson.com/recipes/search?q=${input}`);
     console.log("api fetch")
@@ -42,13 +43,19 @@ function App() {
     <div>
       <h1 className='heading'>Auto-Complete Search bar </h1>
       <div className='input-div' >
-        <input type="text" placeholder='Enter the text' value={input} onChange={(e) => setInput(e.target.value)} className='input-text' onFocus={() => setShowresults(true)} onBlur={() => {
-          setShowresults(false)
+        <input  type="text" placeholder='Enter the text' value={input} onChange={(e) => setInput(e.target.value)} className='input-text' onFocus={() => setShowresults(true)} onBlur={() => {
+          setTimeout(() => {
+            setShowresults(false)
+            // inputRef.current?.focus();
+
+
+
+          }, 300);
         }} />
       </div>
       {showresults && <div className='fetch-div'>
         {
-          data.map((item) => <p key={item.id}>{item.name}</p>)
+          data.map((item) => <p onClick={() => setInput(item.name)} key={item.id}>{item.name}</p>)
         }
       </div>}
     </div>
